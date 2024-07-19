@@ -8,7 +8,7 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [RouterModule, FormsModule, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   email: string = '';
@@ -18,7 +18,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.email && this.password) {
-      this.router.navigate(['/home']);
+      this.login();
     } else {
       alert('Por favor, preencha todos os campos.');
     }
@@ -26,5 +26,10 @@ export class LoginComponent {
 
   forgotPassword() {
     alert('Processo de recuperação de senha enviado para o e-mail cadastrado.');
+  }
+
+  login() {
+    localStorage.setItem('email', this.email);
+    this.router.navigate(['/home']);
   }
 }
