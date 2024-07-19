@@ -1,0 +1,11 @@
+<div class="header-container">
+    <div class="logo"></div>
+    <div class="user-info">
+      <span class="user-email">{{ email }}</span>
+      <div class="user-avatar" (click)="toggleDropdown()"></div>
+      <div class="dropdown-menu" *ngIf="dropdownVisible">
+        <button (click)="logout()">Sair</button>
+      </div>
+    </div>
+  </div>
+  
