@@ -1,1 +1,31 @@
-<p>alunos works!</p>
+<div class="container">
+    <div class="search-container">
+      <input [(ngModel)]="searchQuery" (input)="search()" placeholder="Pesquisar por nome ou e-mail">
+      <button (click)="search()">Pesquisar</button>
+    </div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>E-mail</th>
+          <th>Curso</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aluno of filteredAlunos">
+          <td>{{ aluno.nomeCompleto }}</td>
+          <td>{{ aluno.cpf }}</td>
+          <td>{{ aluno.email }}</td>
+          <td>{{ aluno.curso }}</td>
+          <td>
+            <button (click)="editAluno(aluno)">Editar</button>
+            <button class="delete" (click)="deleteAluno(aluno)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
