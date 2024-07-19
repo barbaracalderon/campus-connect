@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.clear();
     sessionStorage.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 
   toggleDropdown() {
