@@ -18,6 +18,10 @@ export class AlunosComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    this.loadAlunos();
+  }
+
+  loadAlunos() {
     const storedAlunos = localStorage.getItem('alunos');
     if (storedAlunos) {
       this.alunos = JSON.parse(storedAlunos);
@@ -28,7 +32,7 @@ export class AlunosComponent implements OnInit {
   search() {
     if (this.searchQuery.trim()) {
       this.filteredAlunos = this.alunos.filter(aluno =>
-        aluno.nome.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        aluno.nomeCompleto.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
         aluno.email.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     } else {
@@ -42,8 +46,8 @@ export class AlunosComponent implements OnInit {
 
   deleteAluno(aluno: any) {
     if (confirm('Quer mesmo excluir este usuário?')) {
-      this.alunos = this.alunos.filter(a => a !== aluno);
-      this.filteredAlunos = this.alunos;
+      this.alunos = this.alunos.filter(a => a.email !== aluno.email);
+      this.filteredAlunos = [...this.alunos];
       localStorage.setItem('alunos', JSON.stringify(this.alunos));
     }
   }
