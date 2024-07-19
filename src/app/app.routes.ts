@@ -10,6 +10,6 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent },
     { path: 'alunos', component: AlunosComponent },
-    { path: 'cadastro-de-aluno', component: CadastroDeAlunoComponent },
+    { path: 'cadastro-aluno', component: CadastroDeAlunoComponent },
     { path: 'disciplinas', component: DisciplinasComponent }
 ];
