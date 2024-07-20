@@ -1,1 +1,16 @@
-<p>disciplinas works!</p>
+<div *ngIf="aluno; else notEnrolled">
+    <h2>Disciplinas do {{ curso?.nome }}</h2>
+    <div *ngFor="let semestre of getObjectKeys(disciplinas || {})" class="mt-3">
+      <h3>{{ capitalize(semestre) }} Semestre</h3>
+      <div *ngFor="let disciplina of disciplinas![semestre]" class="card mb-3">
+        <div class="card-body">
+          {{ disciplina }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #notEnrolled>
+    <p>O aluno logado não está cadastrado em nenhum curso.</p>
+  </ng-template>
+  
