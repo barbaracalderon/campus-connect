@@ -1,1 +1,28 @@
-<p>disciplinas works!</p>
+<div *ngIf="aluno; else notFound">
+  <h2>Disciplinas de {{ aluno.nomeCompleto }}, inscrita em {{aluno.curso}}</h2>
+  <div *ngIf="disciplinas; else noDisciplinas">
+    <div *ngFor="let semestre of semestres">
+      <h3>{{ semestre | titlecase }} Semestre</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let disciplina of disciplinas[semestre]">
+              <td>{{ disciplina }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <ng-template #noDisciplinas>
+    <p>Nenhuma disciplina encontrada para o curso do aluno.</p>
+  </ng-template>
+</div>
+<ng-template #notFound>
+  <p>Aluno não está cadastrado em nenhum curso.</p>
+</ng-template>

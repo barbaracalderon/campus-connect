@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -20,7 +21,11 @@ errorMessage: any;
 
   onSubmit() {
     if (this.email && this.password) {
-      this.login();
+      if (this.authService.login(this.email, this.password)) {
+        this.router.navigate(['/home']);
+      } else {
+        alert('Login falhou. Verifique suas credenciais.');
+      }
     } else {
       alert('Por favor, preencha todos os campos.');
     }
