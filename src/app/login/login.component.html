@@ -39,6 +39,7 @@
         <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Entrar</button>
         <button type="button" class="btn btn-secondary" (click)="forgotPassword()">Esqueci a Senha</button>
       </div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
     </form>
     <p class="description">CampusConnect é um portal educacional que reúne dados escolares.</p>
   </div>
