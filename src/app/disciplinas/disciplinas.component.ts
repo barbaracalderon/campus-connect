@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DisciplinasService } from '../services/disciplinas.service';
 
+interface Disciplina {
+  nome: string;
+  semestre: number;
+}
+
 @Component({
   selector: 'app-disciplinas',
   standalone: true,
@@ -14,7 +19,7 @@ export class DisciplinasComponent {
   cursos: string[] = ['Curso 1', 'Curso 2', 'Curso 3'];
   selectedCurso: string = '';
   selectedSemestre: number | null = null;
-  disciplinas: string[] = [];
+  disciplinas: Disciplina[] = [];
 
   constructor(private disciplinasService: DisciplinasService) {}
 
