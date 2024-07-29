@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlunoService } from '../services/aluno.service';
 
 @Component({
   selector: 'app-alunos',
@@ -15,18 +16,18 @@ export class AlunosComponent implements OnInit {
   searchQuery: string = '';
   filteredAlunos: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private alunoService: AlunoService
+  ) {}
 
   ngOnInit() {
     this.loadAlunos();
   }
 
   loadAlunos() {
-    const storedAlunos = localStorage.getItem('alunos');
-    if (storedAlunos) {
-      this.alunos = JSON.parse(storedAlunos);
-      this.filteredAlunos = [...this.alunos];
-    }
+    this.alunos = this.alunoService.getAlunos();
+    this.filteredAlunos = [...this.alunos];
   }
 
   search() {
@@ -46,9 +47,8 @@ export class AlunosComponent implements OnInit {
 
   deleteAluno(aluno: any) {
     if (confirm('Quer mesmo excluir este usuário?')) {
-      this.alunos = this.alunos.filter(a => a.email !== aluno.email);
-      this.filteredAlunos = [...this.alunos];
-      localStorage.setItem('alunos', JSON.stringify(this.alunos));
+      this.alunoService.excluirAluno(aluno.email);
+      this.loadAlunos();
     }
   }
 }
