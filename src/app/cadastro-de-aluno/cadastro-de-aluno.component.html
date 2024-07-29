@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="left-section">
+    <div class="form-container">
+      <h2>Cadastro de Aluno</h2>
+      <form [formGroup]="alunoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="nomeCompleto">Nome Completo:</label>
+          <input id="nomeCompleto" formControlName="nomeCompleto" class="form-control" />
+          <div *ngIf="alunoForm.get('nomeCompleto')?.invalid && alunoForm.get('nomeCompleto')?.touched" class="error-message">
+            Nome Completo é obrigatório.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cpf">CPF:</label>
+          <input id="cpf" formControlName="cpf" class="form-control" />
+          <div *ngIf="alunoForm.get('cpf')?.invalid && alunoForm.get('cpf')?.touched" class="error-message">
+            CPF é obrigatório.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">E-mail:</label>
+          <input id="email" formControlName="email" class="form-control" />
+          <div *ngIf="alunoForm.get('email')?.invalid && alunoForm.get('email')?.touched" class="error-message">
+            E-mail é obrigatório e deve ser válido.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="celular">Celular:</label>
+          <input id="celular" formControlName="celular" class="form-control" />
+          <div *ngIf="alunoForm.get('celular')?.invalid && alunoForm.get('celular')?.touched" class="error-message">
+            Celular é obrigatório.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="curso">Curso:</label>
+          <select id="curso" formControlName="curso" class="form-control">
+            <option value="" disabled>Selecione um curso</option>
+            <option *ngFor="let curso of cursos" [value]="curso.nome">{{ curso.nome }}</option>
+          </select>
+          <div *ngIf="alunoForm.get('curso')?.invalid && alunoForm.get('curso')?.touched" class="error-message">
+            Curso é obrigatório.
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button type="submit" class="btn btn-primary" [disabled]="alunoForm.invalid">Salvar</button>
+          <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="right-section">
+    <div class="background-image"></div>
+  </div>
+</div>

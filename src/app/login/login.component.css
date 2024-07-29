@@ -1,0 +1,106 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #1a1a1a;
+}
+
+.login-section {
+  background-color: #333;
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-container {
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 400px;
+  height: 175px;
+  background: url('../../assets/campus_connect.png') no-repeat center center;
+  background-size: 450px 175px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  color: #fff;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+input {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #777;
+  border-radius: 5px;
+  font-size: 1em;
+  background-color: #444;
+  color: #fff;
+}
+
+.error-message {
+  color: #ff4d4d;
+  text-align: left;
+  margin-top: 5px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.btn-primary {
+  background-color: #a7ff4d;
+  color: #1a1a1a;
+  margin-right: 10px;
+}
+
+.btn-secondary {
+  background-color: #777;
+  color: #fff;
+}
+
+.description {
+  margin-top: 50px;
+  font-size: 0.9em;
+  color: #ccc;
+}
