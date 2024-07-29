@@ -39,9 +39,7 @@
           <label for="curso">Curso:</label>
           <select id="curso" formControlName="curso" class="form-control">
             <option value="" disabled>Selecione um curso</option>
-            <option value="curso1">Curso 1</option>
-            <option value="curso2">Curso 2</option>
-            <option value="curso3">Curso 3</option>
+            <option *ngFor="let curso of cursos" [value]="curso.nome">{{ curso.nome }}</option>
           </select>
           <div *ngIf="alunoForm.get('curso')?.invalid && alunoForm.get('curso')?.touched" class="error-message">
             Curso é obrigatório.

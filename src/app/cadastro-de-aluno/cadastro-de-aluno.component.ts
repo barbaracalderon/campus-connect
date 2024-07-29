@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { CursosService } from '../services/cursos.service';
 
 @Component({
   selector: 'app-cadastro-de-aluno',
@@ -13,8 +14,9 @@ import { Router } from '@angular/router';
 export class CadastroDeAlunoComponent {
   alunoForm: FormGroup;
   alunoToEdit: any;
+  cursos: any[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private cursosService: CursosService) {
     this.alunoForm = this.fb.group({
       nomeCompleto: ['', Validators.required],
       cpf: ['', Validators.required],
@@ -22,6 +24,8 @@ export class CadastroDeAlunoComponent {
       celular: ['', Validators.required],
       curso: ['', Validators.required]
     });
+
+    this.cursos = this.cursosService.getCursos();
 
     this.alunoToEdit = this.router.getCurrentNavigation()?.extras.state?.['aluno'];
     if (this.alunoToEdit) {

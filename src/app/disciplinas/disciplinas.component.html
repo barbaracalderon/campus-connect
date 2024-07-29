@@ -1,28 +1,30 @@
-<div *ngIf="aluno; else notFound">
-  <h2>Disciplinas de {{ aluno.nomeCompleto }}, inscrita em {{aluno.curso}}</h2>
-  <div *ngIf="disciplinas; else noDisciplinas">
-    <div *ngFor="let semestre of semestres">
-      <h3>{{ semestre | titlecase }} Semestre</h3>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>Disciplina</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let disciplina of disciplinas[semestre]">
-              <td>{{ disciplina }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div class="container">
+    <h2>Disciplinas</h2>
+    <div class="form-group">
+      <label for="curso">Curso:</label>
+      <select id="curso" [(ngModel)]="selectedCurso" (change)="onCursoChange()" class="form-control">
+        <option value="" disabled>Selecione um curso</option>
+        <option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</option>
+      </select>
+    </div>
+  
+    <div class="form-group" *ngIf="selectedCurso">
+      <label for="semestre">Semestre:</label>
+      <select id="semestre" [(ngModel)]="selectedSemestre" (change)="onSemestreChange()" class="form-control">
+        <option value="" disabled>Selecione um semestre</option>
+        <option *ngFor="let semestre of [1, 2, 3, 4, 5, 6, 7, 8]" [value]="semestre">{{ semestre }}</option>
+      </select>
+    </div>
+  
+    <div *ngIf="disciplinas.length > 0">
+      <h3>Disciplinas</h3>
+      <ul>
+        <li *ngFor="let disciplina of disciplinas">{{ disciplina }}</li>
+      </ul>
+    </div>
+  
+    <div *ngIf="disciplinas.length === 0 && selectedCurso && selectedSemestre !== null">
+      <p>Nenhuma disciplina encontrada para o curso e semestre selecionados.</p>
     </div>
   </div>
-  <ng-template #noDisciplinas>
-    <p>Nenhuma disciplina encontrada para o curso do aluno.</p>
-  </ng-template>
-</div>
-<ng-template #notFound>
-  <p>Aluno não está cadastrado em nenhum curso.</p>
-</ng-template>
+  
