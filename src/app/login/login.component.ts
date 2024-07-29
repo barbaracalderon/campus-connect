@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,9 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+errorMessage: any;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   onSubmit() {
     if (this.email && this.password) {
@@ -29,7 +31,11 @@ export class LoginComponent {
   }
 
   login() {
-    localStorage.setItem('email', this.email);
-    this.router.navigate(['/home']);
+    const success = this.loginService.logar(this.email, this.password);
+    if (success) {
+      this.router.navigate(['/home']);
+    } else {
+      alert('Usuário ou senha incorretos.');
+    }
   }
 }

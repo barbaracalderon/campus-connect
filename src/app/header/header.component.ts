@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -13,15 +14,17 @@ export class HeaderComponent implements OnInit {
   email: string | null = '';
   dropdownVisible = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit() {
-    this.email = localStorage.getItem('email');
+    const usuarioLogado = this.loginService.getUsuarioLogado();
+    if (usuarioLogado) {
+      this.email = usuarioLogado.email;
+    }
   }
 
   logout() {
-    localStorage.clear();
-    sessionStorage.clear();
+    this.loginService.deslogar();
     this.router.navigate(['/']);
   }
 
