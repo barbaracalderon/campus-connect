@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { CursosService } from '../services/cursos.service';
+import { AlunoService } from '../services/aluno.service';
 
 @Component({
   selector: 'app-cadastro-de-aluno',
@@ -16,7 +17,12 @@ export class CadastroDeAlunoComponent {
   alunoToEdit: any;
   cursos: any[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router, private cursosService: CursosService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private cursosService: CursosService,
+    private alunoService: AlunoService
+  ) {
     this.alunoForm = this.fb.group({
       nomeCompleto: ['', Validators.required],
       cpf: ['', Validators.required],
@@ -35,16 +41,7 @@ export class CadastroDeAlunoComponent {
 
   onSubmit() {
     if (this.alunoForm.valid) {
-      const alunoData = this.alunoForm.value;
-      let alunos = JSON.parse(localStorage.getItem('alunos') || '[]');
-      
-      if (this.alunoToEdit) {
-        alunos = alunos.map((a: any) => a.email === this.alunoToEdit.email ? alunoData : a);
-      } else {
-        alunos.push(alunoData);
-      }
-
-      localStorage.setItem('alunos', JSON.stringify(alunos));
+      this.alunoService.cadastrarAluno(this.alunoForm.value);
       alert('Usuário salvo com sucesso');
       this.router.navigate(['/alunos']);
     }
